@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>主题延展 · 问鼎娱乐 · 信息卡片</title>
+  <style>
+    /* 重置 & 基线 */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f4f9fc;
+      color: #1a2f3b;
+      line-height: 1.6;
+      padding: 2rem 1.2rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .page-wrapper {
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* 蓝绿点缀变量 */
+    :root {
+      --teal-100: #d9f0f0;
+      --teal-300: #70c4c3;
+      --teal-500: #2a9d8f;
+      --teal-700: #1b6b62;
+      --bluegreen-200: #b7dad9;
+      --shadow-card: 0 8px 20px rgba(22, 78, 78, 0.08);
+      --radius-card: 18px;
+    }
+
+    /* 主视觉 / hero */
+    .hero {
+      background: linear-gradient(145deg, #dff2f0 0%, #c3e3e1 100%);
+      border-radius: var(--radius-card);
+      padding: 3rem 2rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #0f3d3a;
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 small {
+      display: block;
+      font-size: 1rem;
+      font-weight: 400;
+      color: #1c635b;
+      margin-top: 0.5rem;
+      letter-spacing: 0.3px;
+    }
+    .hero p {
+      max-width: 600px;
+      margin: 1rem auto 0;
+      font-size: 1.08rem;
+      color: #1b4f48;
+    }
+
+    /* 网格卡片 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.6rem;
+      margin: 2rem 0 2.5rem;
+    }
+    @media (min-width: 600px) {
+      .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (min-width: 920px) {
+      .card-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .info-card {
+      background: #ffffff;
+      border-radius: var(--radius-card);
+      padding: 1.8rem 1.6rem;
+      box-shadow: var(--shadow-card);
+      border: 1px solid rgba(42, 157, 143, 0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+    .info-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(28, 107, 98, 0.1);
+    }
+    .info-card .icon-placeholder {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: var(--teal-100);
+      border-radius: 14px;
+      color: var(--teal-700);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .info-card h3 {
+      font-size: 1.24rem;
+      font-weight: 600;
+      color: #0b3d37;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.3px;
+    }
+    .info-card p {
+      font-size: 0.96rem;
+      color: #2e4e49;
+      flex: 1;
+    }
+
+    /* 适合人群卡片可强调 */
+    .card-highlight {
+      background: #e5f3f1;
+      border-left: 4px solid var(--teal-500);
+    }
+
+    /* 段落承接区 */
+    .connective-text {
+      background: #ffffffda;
+      backdrop-filter: blur(4px);
+      padding: 2rem 2rem 2.2rem;
+      border-radius: var(--radius-card);
+      margin: 2rem 0 2.8rem;
+      box-shadow: var(--shadow-card);
+      border: 1px solid #d4eae7;
+    }
+    .connective-text p {
+      margin-bottom: 1.2rem;
+      font-size: 1.02rem;
+    }
+    .connective-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 自然链接样式 */
+    .inline-link {
+      color: #0f6b60;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1.5px solid var(--teal-300);
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .inline-link:hover {
+      color: #0a4a41;
+      border-bottom-color: var(--teal-500);
+    }
+
+    /* FAQ 摘要（折叠感） */
+    .faq-mini {
+      background: #f1f9f8;
+      border-radius: 18px;
+      padding: 1.6rem 1.8rem;
+      margin: 2.2rem 0 2rem;
+    }
+    .faq-mini h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #134e45;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .faq-mini details {
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid #c7dfdb;
+      padding-bottom: 0.65rem;
+    }
+    .faq-mini details summary {
+      cursor: pointer;
+      font-weight: 500;
+      color: #1a574e;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .faq-mini details summary::before {
+      content: "▸";
+      color: var(--teal-500);
+      font-size: 1.1rem;
+      transition: transform 0.2s;
+    }
+    .faq-mini details[open] summary::before {
+      transform: rotate(90deg);
+    }
+    .faq-mini details p {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      color: #29524a;
+      padding-left: 1.2rem;
+    }
+
+    /* 底部信息 */
+    .footer-note {
+      text-align: center;
+      font-size: 0.85rem;
+      color: #4f706a;
+      border-top: 1px solid #c7ddd9;
+      padding-top: 1.6rem;
+      margin-top: 0.8rem;
+    }
+
+    /* 移动端微调 */
+    @media (max-width: 480px) {
+      .hero { padding: 2rem 1.2rem; }
+      .hero h1 { font-size: 2rem; }
+      .connective-text { padding: 1.6rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+
+  <!-- 主视觉 / 知识型开场 -->
+  <header class="hero">
+    <h1>
+      问鼎娱乐
+      <small>知识·结构·信息卡片</small>
+    </h1>
+    <p>从主题关键词出发，梳理内容背后的逻辑、场景与受众。这里不堆砌，只提供有层次的梳理。</p>
+  </header>
+
+  <!-- 用途卡片 + 适合人群 (网格) -->
+  <div class="card-grid">
+    <!-- 卡片 1：主题延展 -->
+    <div class="info-card">
+      <div class="icon-placeholder">🧩</div>
+      <h3>主题延展</h3>
+      <p>围绕「问鼎娱乐」衍生出不同维度的内容分支：休闲策略、轻竞技、社交陪伴。每个分支都可以独立展开，形成可读性强的信息体系。</p>
+    </div>
+    <!-- 卡片 2：用途场景 -->
+    <div class="info-card">
+      <div class="icon-placeholder">📋</div>
+      <h3>用途场景</h3>
+      <p>适用于内容站导航、产品功能介绍、社区聚合页。卡片式布局能快速传递核心信息，降低浏览负担。</p>
+    </div>
+    <!-- 卡片 3：适合人群 (高亮) -->
+    <div class="info-card card-highlight">
+      <div class="icon-placeholder">👥</div>
+      <h3>适合人群</h3>
+      <p>内容创作者、休闲兴趣探索者、希望了解轻量娱乐方式的用户，也适合对信息分类有要求的读者。</p>
+    </div>
+  </div>
+
+  <!-- 段落承接：自然嵌入链接 -->
+  <div class="connective-text">
+    <p>
+      当我们谈论某个方向时，往往先看到的是标签，但标签之下有更细密的脉络。以
+      <a href="https://url-wending.com" class="inline-link">问鼎娱乐</a>
+      作为例子，它背后可以容纳多种解释路径：可以从“问鼎”的词源出发，也可以从“娱乐”的现代形态切入。这份介绍页尝试将关键词拆解成可交互的信息单元，而不是单页面的简单罗列。
+    </p>
+    <p>
+      信息卡片的设计初衷是降低认知负荷——每张卡片只聚焦一个子话题，读者可以按需停留。比如用途卡片强调实用性，适合人群卡片则帮助判断内容是否与自己相关。这种结构也方便后续扩展新的卡片，比如案例、数据或简史。
+    </p>
+    <p>
+      另外，视觉上蓝绿色点缀贯穿始终，从卡片边框到链接下划线都保留统一的低饱和度色调，避免喧宾夺主。移动端通过网格自适应，单列时每张卡片依然保持舒适的阅读宽度。
+    </p>
+  </div>
+
+  <!-- FAQ 摘要 (知识型) -->
+  <div class="faq-mini">
+    <h4>❔ 常见理解摘要</h4>
+    <details>
+      <summary>信息卡片页与传统介绍页有什么不同？</summary>
+      <p>传统介绍页通常是线性叙事，而卡片页允许用户跳跃浏览，每一块内容相对独立。适合信息点较多、用户目的不固定的场景。</p>
+    </details>
+    <details>
+      <summary>为什么选择蓝绿色作为视觉线索？</summary>
+      <p>蓝绿色系在屏幕上有冷静、清晰的心理暗示，同时与“娱乐”主题形成微妙对比——既不冷淡也不过分热烈，利于知识型内容的呈现。</p>
+    </details>
+    <details>
+      <summary>这种页面结构适合哪些项目？</summary>
+      <p>适合产品功能说明、小型团队介绍、兴趣社群导航，以及任何希望把关键词变成结构化内容的信息站点。</p>
+    </details>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer-note">
+    <span>基于信息卡片的方向 · 内容自然生成</span>
+  </div>
+
+</div>
+</body>
+</html>
