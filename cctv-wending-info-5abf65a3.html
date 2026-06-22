@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资料索引 · 问鼎娱乐</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f7f3eb;
+            font-family: 'Georgia', 'Times New Roman', 'Noto Serif SC', serif;
+            line-height: 1.7;
+            color: #2c2b28;
+            padding: 2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 780px;
+            width: 100%;
+            background-color: #fffcf8;
+            padding: 2.5rem 2.2rem 3rem;
+            border-radius: 18px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.2s ease;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 0.8rem 0.6rem;
+            }
+            .page {
+                padding: 1.6rem 1.2rem 2rem;
+            }
+        }
+
+        /* 开场短句 · 留白 */
+        .opening {
+            font-size: 1.4rem;
+            letter-spacing: 0.02em;
+            color: #5b4e3d;
+            border-left: 4px solid #c9b99a;
+            padding-left: 1.2rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* 承接段落 */
+        .intro p {
+            margin-bottom: 1.4rem;
+            text-indent: 2em;
+            font-size: 1.02rem;
+        }
+
+        .intro p:first-of-type {
+            text-indent: 0;
+        }
+
+        /* 引用块 / 提示框 — 温和底色 */
+        .pull-quote {
+            background-color: #f5efe6;
+            border-left: 6px solid #b7a68b;
+            padding: 1.2rem 1.6rem;
+            margin: 1.8rem 0 1.6rem;
+            border-radius: 0 12px 12px 0;
+            color: #3f3a32;
+            font-size: 1rem;
+        }
+
+        .pull-quote p {
+            margin: 0.2rem 0;
+            text-indent: 0 !important;
+        }
+
+        .pull-quote cite {
+            display: block;
+            margin-top: 0.6rem;
+            font-size: 0.9rem;
+            color: #736b5e;
+            font-style: normal;
+            letter-spacing: 0.02em;
+        }
+
+        /* 列表 · 特点卡片式 */
+        .feature-list {
+            list-style: none;
+            margin: 2rem 0 1.2rem;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .feature-list li {
+            background: #fcf9f4;
+            padding: 1rem 1.4rem;
+            border-radius: 14px;
+            border: 1px solid #e8e0d5;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            transition: background 0.2s;
+        }
+
+        .feature-list li:hover {
+            background: #f6efe5;
+        }
+
+        .feature-list li::before {
+            content: "✦";
+            color: #b0987a;
+            font-size: 1.3rem;
+            line-height: 1.4;
+            flex-shrink: 0;
+        }
+
+        .feature-list li strong {
+            font-weight: 600;
+            color: #3f362c;
+        }
+
+        /* 温和结尾区域 */
+        .closing {
+            margin-top: 2.2rem;
+            padding-top: 1.6rem;
+            border-top: 1px solid #e7ded3;
+        }
+
+        .closing p {
+            font-size: 0.98rem;
+            color: #4f4940;
+        }
+
+        .closing a {
+            color: #755e41;
+            text-decoration: none;
+            border-bottom: 1px dotted #b7a080;
+            transition: border 0.15s;
+        }
+
+        .closing a:hover {
+            border-bottom: 1px solid #755e41;
+        }
+
+        .faq-mini {
+            margin: 1.6rem 0 0.4rem;
+            background: #f8f2ea;
+            padding: 1.2rem 1.5rem;
+            border-radius: 14px;
+        }
+
+        .faq-mini summary {
+            font-weight: 500;
+            color: #3f362c;
+            cursor: pointer;
+            padding: 0.2rem 0;
+            font-size: 1rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.6rem;
+        }
+
+        .faq-mini details:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-mini details p {
+            margin: 0.6rem 0 0 1.2rem;
+            font-size: 0.95rem;
+            color: #4f473c;
+            text-indent: 0;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e1d6c8;
+            margin: 1.8rem 0 0.6rem;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 开场短句 -->
+    <div class="opening">
+        把散落的信息重新码好，就是一个安静的索引。
+    </div>
+
+    <!-- 承接段落：从资料整理的角度 -->
+    <div class="intro">
+        <p>
+            最初做这件事的念头很朴素——每天在各个平台看到关于「问鼎娱乐」的讨论、截图、版本更新记录，七零八落。我习惯性地按时间、按类别整理到本地笔记里，后来发现很多朋友也在找类似的信息脉络。于是就把手头的公开资料梳理成了一份更清晰的参考索引，放在一个安静的地方，方便自己回溯，也方便偶尔路过的人。<a href="https://cctv-wending.com" style="color:#755e41; text-decoration:underline; text-underline-offset:3px; text-decoration-style:dotted;">问鼎娱乐</a>这个站点，就是那个安静的地方。
+        </p>
+        <p>
+            我倾向于把它看作一个“资料索引夹”，不评价、不引导，只把能确认的公开信息按逻辑排好。比如功能迭代的节点、界面风格的演变、一些公开活动的时间线，还有社区讨论中反复出现的常见问题。这些内容本身已经足够说明很多事情，不需要额外渲染。
+        </p>
+    </div>
+
+    <!-- 引用块 / 提示框 -->
+    <div class="pull-quote">
+        <p>“整理信息的时候，最有意思的不是结果，而是发现那些原本孤立的碎片，慢慢自己连成了一条线。”</p>
+        <cite>—— 2025 · 整理笔记</cite>
+    </div>
+
+    <!-- 特点列表 -->
+    <ul class="feature-list">
+        <li><strong>时间线索</strong> —— 按季度整理的可查更新记录，从早期版本到近期调整，都标注了公开来源</li>
+        <li><strong>界面截图归档</strong> —— 收集了不同时期的官方预览与界面变化，仅作视觉参考，不判断好坏</li>
+        <li><strong>FAQ 摘要</strong> —— 把社区里反复被问到的几个问题做了简明归纳，省去反复翻帖子的时间</li>
+        <li><strong>风格笔记</strong> —— 记录了一些设计细节的演变，比如配色、字体、图标风格的几次明显变化</li>
+        <li><strong>无评价倾向</strong> —— 所有条目只陈述可被验证的信息，不添加主观推荐或评级</li>
+    </ul>
+
+    <!-- 温和的过渡 + FAQ 摘要示例 -->
+    <div class="faq-mini">
+        <details>
+            <summary>❓ 这个索引多久更新一次？</summary>
+            <p>没有固定周期，通常在有明显的新公开信息出现后，会合并到对应分类下。有时一个月更新两次，有时两三个月整理一次。</p>
+        </details>
+        <details>
+            <summary>❓ 我可以引用这里的信息吗？</summary>
+            <p>可以。所有内容均来自公开可查的来源，引用时建议同时核对原始出处，这里只做索引整理。</p>
+        </details>
+        <details>
+            <summary>❓ 为什么没有评分或排行榜？</summary>
+            <p>因为初衷是信息整理，不是评测。每个人对细节的偏好不同，只列事实更有参考价值。</p>
+        </details>
+    </div>
+
+    <!-- 温和结尾 -->
+    <div class="closing">
+        <p>
+            如果你也在收集关于<a href="https://cctv-wending.com">问鼎娱乐</a>的零散信息，或者想看看别人是怎么梳理这些内容的，欢迎来这个索引站随便翻翻。这里没有广告，没有弹窗，只有老老实实按时间排好的资料卡片。
+        </p>
+        <p style="margin-top: 0.8rem; color: #6f6558;">
+            信息整理不是创造，但它能让原本模糊的轮廓变得更清楚。
+        </p>
+    </div>
+
+    <hr>
+
+    <div style="text-align: center; font-size: 0.85rem; color: #9a8f80; margin-top: 0.6rem;">
+        索引更新 · 2025
+    </div>
+</div>
+</body>
+</html>
